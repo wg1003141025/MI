@@ -5017,35 +5017,28 @@
 </html>
 <script>
 
-	//选项卡
-	function xxcard(aaa, bbb) {
-		var lis = document.querySelectorAll(aaa);
-		var uls = document.querySelectorAll(bbb);
-//		console.log(lis);
-//		console.log(uls);
-		lis.forEach(function (value, index) {
-			value.onmouseover = function () {
-				for (var i = 0; i < lis.length; i++) {
-					lis[i].classList.remove('active');
+	//内容选项卡
+	let  bigcard=document.getElementsByClassName('brick_nav');				//获取标题大块
+	let  card_con=document.getElementsByClassName('content_one');			//获取内容大块
+	for(i=0;i<bigcard.length;i++) {											//遍历标题大块
+		let span = bigcard[i].getElementsByTagName('span');					//获取标题块里的每一个span
+		let nei = card_con[i].getElementsByClassName('con_one_xin');		//获取每一个内容
+		for (let j = 0; j < span.length; j++) {								//遍历标题
+			span[j].onmouseover = function () {								//添加鼠标移入事件
+				for (let a = 0; a < span.length; a++) {						//遍历标题
+					span[a].classList.remove('active');						//移除标题的active
+					nei[a].classList.remove('con_one_r_active');			//移除内容的active
 				}
-				for (var i = 0; i < uls.length; i++) {
-					uls[i].classList.remove('con_one_r_active');
-				}
-				this.classList.add('active');
-				uls[index].classList.add('con_one_r_active');
+				span[j].classList.add('active');							//标题添加active
+				nei[j].classList.add('con_one_r_active');					//内容添加active
 			}
-		});
+		}
 	}
-	xxcard('.jiadian_dakuai span' , '.jiadian_dakuai .con_one_xin');
-	xxcard('.zhineng_dakuai span' , '.zhineng_dakuai .con_one_xin');
-	xxcard('.dapei_dakuai span' , '.dapei_dakuai .con_one_xin');
-	xxcard('.peijian_dakuai span' , '.peijian_dakuai .con_one_xin');
-	xxcard('.zhoubian_dakuai span' , '.zhoubian_dakuai .con_one_xin');
+
+
 	//banner的onmouseover
 	let kuai = document.getElementsByClassName("kuaii");
-//	console.log(kuai);
 	let children = document.getElementsByClassName("children");
-//	console.log(children);
 	for(let i = 0;i < kuai.length;i++){
 		kuai[i].onmouseover = function () {
 			children[i].classList.add("children_active");
@@ -5056,17 +5049,14 @@
 			}
 		}
 	}
+
+
 	//nav的onmouseover
 	let titbei = document.getElementsByClassName("dao")[0];
-//	console.log(titbei);
 	let conbei = document.getElementsByClassName("header_menuzong")[0];
-//	console.log(conbei);
 	let cen = document.getElementsByClassName("ceny");
-//	console.log(cen);
 	let navmenu = document.getElementsByClassName("header_nav_menu");
-//	console.log(navmenu);
 	let kong = document.getElementsByClassName("cenk");
-//	console.log(kong);
 	for(k = 0;k < kong.length;k++){
 		kong[k].onmousemove = function(){
 			conbei.style.height = 0;
@@ -5085,26 +5075,19 @@
 			}
 			navmenu[i].classList.add("header_nav_menu_active");
 		}
-//		cen[i].onmouseout = function(){
-//
-//		}
 	}
 
 	//按需加载
 	var agg = document.getElementsByClassName("ag");
-//	console.log(agg);
 	window.onscroll = function () {
 		var bar = document.documentElement.scrollTop || document.body.scrollTop || window.scrollY || window.pageYOffset;
 		for(var i = 0;i < agg.length;i++){
 			var top = agg[i].offsetTop - 500;
-//			console.log(top);
 			var imgg = agg[i].getElementsByTagName("img");
-//			console.log(imgg);
 			if (bar > top){
 				for(var j = 0;j <imgg.length;j++){
 					var dizhi = imgg[j].getAttribute("attr");
 					imgg[j].src = dizhi;
-//					console.log(imgg[j].src);
 				}
 			}
 		}
